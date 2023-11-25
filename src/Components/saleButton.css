@@ -1,0 +1,18 @@
+:root {
+    --blanco: #f4f7ff;
+    --negro: #1f2335;
+    --azul: #5c86ff;
+    --success: #5cffa1;
+}
+
+button {
+    color: var(--blanco);
+    cursor: pointer;
+    font-size: 14px;
+    height: 40px;
+    outline: none;
+    overflow: hidden;
+    padding: 0 10px;
+    width: 190px;
+    z-index: 2;
+}
