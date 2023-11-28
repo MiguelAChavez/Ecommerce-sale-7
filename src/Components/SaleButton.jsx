@@ -1,15 +1,28 @@
 import "./SaleButton.css";
-export const SaleButton = () => {
+import { useEffect, useState } from "react";
+import "./SaleButton.css";
+
+export const SaleButton = ({ onClick }) => {
+  const [isSold, setIsSold] = useState(false);
+  const buttonClass = isSold ? "sold" : "ready";
+
+  const handleClick = () => {
+    setIsSold(true);
+    onClick();
+  };
+
+  useEffect(() => {
+    if (isSold) {
+      setTimeout(() => setIsSold(false), 2000);
+    }
+  }, [isSold]);
+
   return (
-    <button className="ready" type="button" onClick={""}>
-      <div className="message submitMessage">
-        <span className="button-text">Comprar</span>
-      </div>
-      <div className="message loadingMessage"></div>
-      <div className="message successMessage">
-        <span className="button-text">Ya es tuyo</span>
-      </div>
-      <canvas id="can"></canvas>
-    </button>
+    <div className="button-wrapper">
+      <button className={buttonClass} type="button" onClick={handleClick}>
+        <span className="ready-text">{isSold ? "Vendido" : "Comprar"}</span>
+      </button>
+      {isSold && <span className="text-sold">Gracias por su compra!</span>}
+    </div>
   );
 };

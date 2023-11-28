@@ -1,8 +1,16 @@
+import { useState } from "react";
 import { SaleButton } from "../SaleButton";
 import "./productDetails.css";
 
 export const ProductDetails = ({ product }) => {
-  console.log(product.path);
+  const [stock, setStock] = useState(product.stock);
+
+  const handleSale = () => {
+    if (stock > 0) {
+      setStock(stock - 1);
+    }
+  };
+
   return (
     <section className="card">
       <article className="left-column">
@@ -10,9 +18,9 @@ export const ProductDetails = ({ product }) => {
         <div className="info">
           <p>Precio: ${product.price}</p>
           <p>SKU: {product.SKU}</p>
-          <p>Cantidad de producto: {product.stock}</p>
+          <p>Cantidad de producto: {stock}</p>
         </div>
-        <SaleButton></SaleButton>
+        <SaleButton onClick={handleSale}></SaleButton>
       </article>
 
       <article className="right-column">
